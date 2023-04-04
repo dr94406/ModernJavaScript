@@ -1,0 +1,25 @@
+// for of 루프를 사용하면 제너레이터에 대해 반복하고 각 루프에서 콘텐츠를 반환(yield)할 수 있다.
+
+// 과일 배열을 생성
+const fruitList = ['Banana', 'Apple', 'Orange', 'Melon', 'Cherry', 'Mango'];
+
+// 재너레이터를 생성
+function * loop(arr) {
+    for(const item of arr) {
+        yield `I like to eat ${item}s`;
+    }
+}
+
+const fruitGenerator = loop(fruitList);
+fruitGenerator.next();
+// {value: " I like to eat Bananas", done: false}
+fruitGenerator.next();
+// {value: " I like to eat Apples", done: false}
+fruitGenerator.next().value;
+// "I like to eat Oranges"
+
+/*
+새로운 제너레이터는 배열을 반복하고 .next()를 호출할 때마다 한 번에 하나의 값을 출력한다.
+
+값을 가져오는 것에 대해서만 관심있다면 .next().value를 사용하면 된다. 이렇게 하면 제너레이터의 상태는 출력되지 않는다.
+*/
